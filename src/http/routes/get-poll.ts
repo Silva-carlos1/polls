@@ -23,7 +23,11 @@ export async function getPoll(app: FastifyInstance) {
        }
       }
     })
-    console.log(poll)
+    
+    if (!poll) {
+      return replay.status(400).send({ message: "Poll not found" })
+    }
+
     return replay.send({ poll });
   });
 }
